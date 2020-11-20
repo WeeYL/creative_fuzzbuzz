@@ -16,7 +16,7 @@
             
             
             {{-- profile image --}}
-            <img class="mw-100" src="/storage/{{$profile->image}}" alt="">
+            <img class="mw-100" src="{{$profile->image}}" alt="">
             <br><br><hr><br>
             <h3>About Me</h3>
             <h5>{{$profile->description}}</h5> <br>

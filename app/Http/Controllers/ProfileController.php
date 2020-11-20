@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
@@ -54,6 +55,7 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         $profile = $user->profile;
+        
         $backings = $user->profile->backing ;
         $profile_projects = ProfileProject::where('profile_id','=',$id);
         // dd($profile_projects);
@@ -100,8 +102,11 @@ class ProfileController extends Controller
         // if image is uploaded
         if (request('image')){
             $imagePath = request('image')->store('profile', 'public'); // store in a storage/profile folder (folder is auto created)
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 300); // open image->fit image->save image
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 300); 
             $image->save();
+
+            // open image->fit image->save image
+            
             $newImg = ['image' => $imagePath]; // store image            
         }
        
