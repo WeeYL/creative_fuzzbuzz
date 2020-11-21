@@ -102,8 +102,12 @@ class ProfileController extends Controller
         // if image is uploaded
         if (request('image')){
             $imagePath = request('image')->store('profile', 'public'); // store in a storage/profile folder (folder is auto created)
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 300); 
-            $image->save();
+            
+            // F:\programming\Laravel\creative\storage\app\public\profile\
+            
+            // $image = Image::make("/storage/app/public/{$imagePath}")->fit(300, 300); 
+            // $image = Image::make(request('image')->getRealPath())->fit(300, 300);
+            // $image->save();
 
             // open image->fit image->save image
             

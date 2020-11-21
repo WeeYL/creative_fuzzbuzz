@@ -63,6 +63,8 @@ class ProjectController extends Controller
 
         if (request('image')) {
             $imagePath = request('image')->store('project', 'public'); // store in a storage/profile folder (folder is auto created)
+            // dd($imagePath);
+            // dd(request('image')->getRealPath());
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(547, 308); // open image->fit image->save image
             $image->save();
             $lastImg = ['image' => $imagePath]; // store image            
@@ -76,7 +78,7 @@ class ProjectController extends Controller
                 'caption' => $data['caption'],
                 'category' => $data['category'],
                 'goal' => $data['goal'],
-                'image' => $imagePath,
+                'image' => $lastImg,
                 'status' => 'live',
                 'expired_at' => date_add($date_cur, date_interval_create_from_date_string("30 days")),
 
@@ -195,6 +197,8 @@ class ProjectController extends Controller
         // if image is uploaded
         if (request('image')) {
             $imagePath = request('image')->store('project', 'public'); // store in a storage/profile folder (folder is auto created)
+            // dd($imagePath);
+            // dd(request('image')->getRealPath());
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(547, 308); // open image->fit image->save image
             $image->save();
             $newImg = ['image' => $imagePath]; // store image            

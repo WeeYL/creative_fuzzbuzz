@@ -159,20 +159,20 @@ return view('welcome');
 
 // Forced reduce image
 Route::get('/redimg', function () {
-    $imgs = scandir('C:/Users/User/Desktop/creative/storage/app/public/project/');
+    $imgs = scandir('C:/Users/User/Desktop/creative/storage1/app/public/project/');
     foreach ($imgs as $img) {
         try {
-            $image = Image::make(public_path("storage/project/{$img}"))->fit(547, 308); // open image->fit image->save image
+            $image = Image::make(public_path("storage/{$img}"))->fit(547, 308); // open image->fit image->save image
             $image->save();
         } catch (Exception $e) {
             //do nothing
         }
     }
 
-    $imgs = scandir('C:/Users/User/Desktop/creative/storage/app/public/profile/');
+    $imgs = scandir('C:/Users/User/Desktop/creative/storage1/app/public/profile/');
     foreach ($imgs as $img) {
         try {
-            $img = Image::make(public_path("storage/profile/{$img}"))->fit(300, 300); // open image->fit image->save image
+            $img = Image::make(public_path("storage/{$img}"))->fit(300, 300); // open image->fit image->save image
             
             $img->save();
         } catch (Exception $e) {
