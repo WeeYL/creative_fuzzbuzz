@@ -31,7 +31,6 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -55,13 +54,13 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         $profile = $user->profile;
-        
-        $backings = $user->profile->backing ;
-        $profile_projects = ProfileProject::where('profile_id','=',$id);
+
+        $backings = $user->profile->backing;
+        $profile_projects = ProfileProject::where('profile_id', '=', $id);
         // dd($profile_projects);
-        
-        $projects = Project::where('profile_id','=',$id)->orderby('expired_at','desc')->get();
-        return view('profiles.show', compact('user','profile','backings','projects','profile_projects'));
+
+        $projects = Project::where('profile_id', '=', $id)->orderby('expired_at', 'desc')->get();
+        return view('profiles.show', compact('user', 'profile', 'backings', 'projects', 'profile_projects'));
     }
 
     /**
@@ -74,9 +73,9 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         $profile = $user->profile;
-        $this->authorize('update',$profile);
+        $this->authorize('update', $profile);
 
-        return view ('profiles.edit',compact('user','profile'));
+        return view('profiles.edit', compact('user', 'profile'));
     }
 
     /**
@@ -94,32 +93,28 @@ class ProfileController extends Controller
 
         // get data from edit route and validate
         $data = request()->validate([
-            'description'=>'required',
-            'url'=>'url',
-            'image' =>'',
+            'description' => 'required',
+            'url' => 'url',
+            // 'image' =>'',
         ]);
 
-        // if image is uploaded
-        if (request('image')){
-            $imagePath = request('image')->store('profile', 'public'); // store in a storage/profile folder (folder is auto created)
-            
-            // F:\programming\Laravel\creative\storage\app\public\profile\
-            
-            // $image = Image::make("/storage/app/public/{$imagePath}")->fit(300, 300); 
-            // $image = Image::make(request('image')->getRealPath())->fit(300, 300);
-            // $image->save();
 
-            // open image->fit image->save image
+
+        // if image is uploaded
+        if (request('image')) {
+            $imagePath = request('image')->store('profile', 'public');
+            // dd(public_path($imagePath),$imagePath);
+            $image = Image::make(public_path() .'/storage/' . $imagePath)->fit(300,300)->save();
             
-            $newImg = ['image' => $imagePath]; // store image            
+            // dd($imagePath);
+
+            $imageArray = ['image' => $imagePath];
         }
-       
-     
-        // update profile
-        $user->profile()->update(array_merge(
+
+        auth()->user()->profile->update(array_merge(
             $data,
-            $newImg ?? []
-            ));
+            $imageArray ?? []
+        ));
 
         return redirect("profile/{$user->id}");
     }

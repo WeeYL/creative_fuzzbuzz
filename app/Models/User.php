@@ -42,13 +42,13 @@ class User extends Authenticatable
     ];
 
     // comment this part before running /generate. uncomment after /test is run
-    // protected static function boot()
-    // {
-    //     parent::boot();
-    //     static::created(function ($user) {
-    //         $user->profile()->create([]);
-    //     }); // after user is created > run a function that creates a default user->profile
-    // }
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function ($user) {
+            $user->profile()->create([]);
+        }); // after user is created > run a function that creates a default user->profile
+    }
 
 
     public function profile()
