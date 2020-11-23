@@ -48,7 +48,8 @@ Route::get('/', function () {
 
 
 Route::get('/generate', function () {
-
+    
+    ini_set('max_execution_time', '300');
     // inputs here
     $num_owners = 10;
     $num_backers = 80;
