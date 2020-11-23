@@ -73,9 +73,10 @@
                     {{-- pass project id --}}
                     <input type="hidden" name="project_id" value="{{$project->id}}"> 
 
-                    {{-- Only backers fund project --}}
+                    
                     <br>
-                    {{-- if authorized, then ... else it is guest no button at all--}}
+                    {{-- Only backers fund project --}}
+                    {{-- if authorized, then ... else user not logged in no button at all--}}
                     @if (Auth::check()) 
                         @if (Auth::user()->profile->id != $project->profile_id)
                             <input type="submit" class="btn btn-success" value="Fund This Project">
@@ -86,7 +87,7 @@
                         <button class="btn btn-info">
                             <a class="text-white" href="/project/{{$project->id}}/edit">edit project</a>
                         </button>
-                        <br><br>
+                         <br><br>
                     @endcan
                 </form>
 
@@ -95,7 +96,7 @@
                         <form action="/project/{{$project->id}}" method="post">
                         @method('delete')
                         @csrf
-                            <input type="submit" class="btn btn-danger" onclick= "return confirm('you want to delete?')" value="delete Project">
+                            <input type="submit" class="btn btn-danger" onclick= "return confirm('you want to delete meh?')" value="delete Project">
                         </form>
                     @endcan
                 @else

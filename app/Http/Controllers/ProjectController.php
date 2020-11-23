@@ -64,7 +64,6 @@ class ProjectController extends Controller
         if (request('image')) {
             $imagePath = request('image')->store('project', 'public'); // store in a storage/profile folder (folder is auto created)
             $image = Image::make(public_path() .'/storage/' . $imagePath)->fit(547, 308)->save(); // open image->fit image->save image
-            $imageArray = ['image' => $imagePath];            
         }
         // create project
         $date_cur = date_create(date('Y-m-d H:i:s'));
