@@ -51,13 +51,14 @@ Route::get('/generate', function () {
     
     ini_set('max_execution_time', '300');
     // inputs here
-    $num_owners = 10;
-    $num_backers = 80;
+    $num_owners = 3;
+    $num_backers = 10;
 
     // create owner / profile / project
 
     for ($owner_generate_id = 1; $owner_generate_id <= $num_owners; $owner_generate_id++) {
         $user = new App\Models\User;
+        echo $user->id;
         $rand_list = ['Mac Smith', 'Josan', 'Top Cow Productions', 'IronSpike', 'Dan Brereton', 'Flesk Publications', 'Melissa Pagluica', 'IronSpike', 'Erika Moen', 'Tesladyne LLC', 'Inclusive Press', 'Gabrielle Lyon', 'Dork Storm Press', 'Travis McIntire', 'Felipe Cagno', 'Rukis', 'Brad Guigar', 'Koteri Ink', 'Michael Finn', 'Brad Guigar', 'ComixTribe', 'Holy Crow Press', 'Jason Inman', 'Megan Rose Gedris', 'Clayton McCormack', 'Dark Planet Comics', 'Billy Tucci and Crusade Fine Arts, Ltd.', 'HEK', 'Stephanie Phillips', 'Joe Brusha', 'Dirk Manning', 'Ron Randall', 'Hiveworks Comics', 'Ron Randall', 'Alex Kain', 'Michael Kingston', 'Joey Worldweaver', 'Charlie Stickney', 'TappyToon', 'Space Goat Productions, Inc.', 'Push Publication', 'EMET Comics', 'Ron Randall', 'Simon Amadeus Pillario (A Morgan)', 'Space Between Entertainment', 'Blake Northcott', 'Drew Ford', 'Skidd', 'Pat Shand', 'Andrew Tarusov', 'Anadia', 'Chris Bodily', 'Kelly Dale', 'Michael Kingston', 'Zack Soto', 'Dark Planet Comics', 'Brandon Dixon', 'Jason Inman', 'Pat Shand', 'Graham Nolan', 'Alex Kain', "Devil's Due Ent", 'Robyn Chapman', 'Jon Schnepp', 'Top Cow Productions', 'Thom Collins', 'Antarctic Press', 'Zan Christensen', 'Lando Griffin', 'Push Publication', 'Les Friction', 'Pat Shand', 'Richard Raaphorst', 'Mark Andrew Smith', 'jeff douglas messer', 'Zan Christensen', 'Return of the Condor Heroes Manga', 'Bun Boi', 'Antarctic Press', 'Jessi Eichberger', 'Derec Donovan', 'Adorned by Chi', 'Dark Planet Comics', 'Nathan Schreiber', 'Push Publication', 'Mark Edward Lewis', 'Rivenis', 'SCSM', 'Russell Nohelty', 'Josh Hano', 'Cow House Press', 'Push Publication', 'Pixel Pirate Studio', 'Erasmus Fox, Inc.', 'David Derrick', 'David Crownson', 'Sean Wang', 'Ominous Press', 'Team Kamikaze', 'Jason Rosen', 'Lorraine Avila', 'Ron Marz', 'The Yaoi Army', 'Action Lab Comics', 'joepi', 'EMET Comics', 'Greene County Creative', 'Jason Yungbluth', 'Open Field Studio, LLC', 'Apotheosis Studios', 'Zan Christensen', 'The Intergalactic Postal Service', 'Tavis Maiden'];
         $user->name = $rand_list[array_rand($rand_list, 1)];
         $user->email = "owner" . $owner_generate_id . "@qwe.com";
