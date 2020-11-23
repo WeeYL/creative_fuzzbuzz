@@ -47,7 +47,7 @@ return [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => 'us-cdbr-east-02.cleardb.com',
-            'database' => 'heroku_b02327ebac700d2heroku_b02327ebac700d2',
+            'database' => 'heroku_b02327ebac700d2',
             'username' => 'ba3973bbe56a91',
             'password' => 'be761bff',
             'unix_socket' => env('DB_SOCKET', ''),
